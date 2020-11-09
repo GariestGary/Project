@@ -20,9 +20,38 @@ namespace WPF_App
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		private DatabaseContext db;
+		private AddEmployeeWindow addEmployeeWindow;
+
 		public MainWindow()
 		{
 			InitializeComponent();
+
+			db = new DatabaseContext();
+		}
+
+		private void Add_Employee_Click(object sender, RoutedEventArgs e)
+		{
+			if(addEmployeeWindow == null)
+			{
+				addEmployeeWindow = new AddEmployeeWindow();
+
+				addEmployeeWindow.Closed += AddEmployeeClosed;
+			}
+
+			
+			addEmployeeWindow.Show();
+			addEmployeeWindow.Activate();
+		}
+
+		public void AddEmployeeClosed(object sender, System.EventArgs e)
+		{
+			addEmployeeWindow = null;
+		}
+
+		private void Remove_Employee_Click(object sender, RoutedEventArgs e)
+		{
+
 		}
 	}
 }
